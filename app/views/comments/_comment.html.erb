@@ -1,0 +1,12 @@
+
+  <p><%= comment.author %> said: </p>
+  <blockquote>
+    <%= comment.body %>
+  </blockquote>
+  <p>email me at:
+    <%= comment.email %>
+  </p>
+
+  <%= link_to "remove comment", post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%# Pass both post object and comment object as required by the params viz. :post_id and :id of delete route:
+  DELETE /posts/:post_id/comments/:id(.:format) %>

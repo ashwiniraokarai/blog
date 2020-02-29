@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+    <%= @post.title %>
+</h2>
+
+<p>
+  <%= @post.body %>
+</p>
+
+<p>Posted by:
+  <%= @post.author %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+
+<br>
+
+<!-- Call the comments/_comment.html.erb partial here, to show comments associated with this post -->
+<h3> Commments </h3>
+<%# @post.comments.each do |comment| %>
+  <%= render :partial => "comments/comment", :collection => @post.comments %>
+<%# end %>
+<br>
+<!-- Form to create a comment associated with this post. Think of this as your new.html.erb
+that comments_controller's def new would have routed to IF the controller had had that method -->
+<h3>Add your comment here: </h3>
+
+<%# def create in comments controller cannot find the comment object without first grabbing the post object
+(see controller and it'll make sense).So, pass both @post and @post.comments.build %>
+<%= form_for [@post, @post.comments.build] do |form| %>
+  <div class="field">
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%# controller will do the @post.comments.create piece for you when form submits and triggers def create %>

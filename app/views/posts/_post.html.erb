@@ -1,0 +1,12 @@
+
+<%# this code runs just like a loop would if the calling view passed the collection. this code then runs for every item in the collection %>
+
+<h2><%= link_to post.title, post %></h2>
+
+<%# format_time_stamp is helper method I wrote in helpers/application_helper.rb%>
+<p><i><%= format_time_stamp post.created_at %></i></p>
+<p><%= post.body %></p>
+<p>
+  <%= link_to 'Edit', edit_post_path(post) %>
+  <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>

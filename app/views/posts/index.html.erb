@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+    <%# @posts.each do |post| %>
+      <%# moved all of the loop code to a partial called _post and also passed the collection to loop over%>
+      <%# passing :collection => @posts tells the partial to behave as though it were surrounded with @posts.each do |post|....end %>
+      <%= render :partial => "post", :collection => @posts %>
+    <%# end %>
+
+<br>
+<h2><%= link_to 'Create New Post', new_post_path %></h2>
